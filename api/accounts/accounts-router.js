@@ -5,7 +5,8 @@ const middleware = require('./accounts-middleware');
 router.get('/', async (req, res, next) => {
   // DO YOUR MAGIC
   try{
-      
+      const accounts = await Accounts.getAll();
+      res.json(accounts);
   }
   catch(err){
     next(err)
@@ -14,12 +15,7 @@ router.get('/', async (req, res, next) => {
 
 router.get('/:id', middleware.checkAccountId, async (req, res, next) => {
   // DO YOUR MAGIC
-  try{
-    
-  }
-  catch(err){
-    next(err)
-  }
+  res.json(req.account);
 })
 
 router.post('/', middleware.checkAccountPayload, 
