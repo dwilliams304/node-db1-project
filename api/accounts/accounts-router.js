@@ -16,24 +16,25 @@ router.get('/', async (req, res, next) => {
 router.get('/:id', middleware.checkAccountId, async (req, res, next) => {
   // DO YOUR MAGIC
   res.json(req.account);
+  next();
 })
 
 router.post('/', middleware.checkAccountPayload, 
 middleware.checkAccountNameUnique, async (req, res, next) => {
   // DO YOUR MAGIC
   try{
-    
+    res.json({});
   }
   catch(err){
     next(err)
   }
-})
+});
 
 router.put('/:id', middleware.checkAccountId, middleware.checkAccountPayload, 
 middleware.checkAccountNameUnique, async (req, res, next) => {
   // DO YOUR MAGIC
   try{
-    
+    res.json({});
   }
   catch(err){
     next(err)
@@ -42,8 +43,11 @@ middleware.checkAccountNameUnique, async (req, res, next) => {
 
 router.delete('/:id', middleware.checkAccountId, async (req, res, next) => {
   // DO YOUR MAGIC
+  const { id } = req.params;
   try{
-    
+    const toDelete = await Accounts.getById(id);
+    await Accounts.deleteById(id);
+    res.json(toDelete);
   }
   catch(err){
     next(err)

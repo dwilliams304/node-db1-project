@@ -10,15 +10,15 @@ const getById = id => {
   return db('accounts').where('id', id).first();
 }
 
-const create = account => {
+const create = account => { //eslint-disable-line
   // DO YOUR MAGIC
 }
 
-const updateById = (id, account) => {
+const updateById = (id, account) => { //eslint-disable-line
   // DO YOUR MAGIC
 }
 
-const deleteById = id => {
+const deleteById = id => {//eslint-disable-line
   // DO YOUR MAGIC
 }
 
