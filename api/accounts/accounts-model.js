@@ -10,16 +10,21 @@ const getById = id => {
   return db('accounts').where('id', id).first();
 }
 
-const create = account => { //eslint-disable-line
+const create = async account => { //eslint-disable-line
   // DO YOUR MAGIC
+  const [id] = await db('accounts').insert(account);
+  return getById(id);
 }
 
-const updateById = (id, account) => { //eslint-disable-line
+const updateById = async (id, account) => { //eslint-disable-line
   // DO YOUR MAGIC
+  await db('accounts').where('id', id).update(account);
+  return getById(id);
 }
 
 const deleteById = id => {//eslint-disable-line
   // DO YOUR MAGIC
+  return db('accounts').where('id', id).del();
 }
 
 module.exports = {
